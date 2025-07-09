@@ -34,7 +34,7 @@ function createPaper (box, sideSize, gap) {
     after that we have the remaining area
     it would divide by the number of the square (16)
     */
-    const squareWidth = `calc((100% / (${gridSize} + 0.1))`;
+    const squareWidth = `calc((100% / (${gridSize} + 1))`;
 
     for (let i = 0; i < totalSquare; i++) {
         const square = document.createElement('div');
