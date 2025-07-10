@@ -1,10 +1,10 @@
 // 1. Create a container DOM and style it
 const container = document.getElementById('container');
-container.style.margin = 'auto';
+container.style.margin = '0 auto';
 container.style.display = 'flex';
 container.style.flexWrap = 'wrap';
-container.style.width = '720px';
-container.style.height = '720px';
+container.style.width = '640px';
+container.style.height = '640px';
 
 // Create a button to clear the grid
 const containerButton = document.getElementById('clear-button');
@@ -23,7 +23,7 @@ function handleMouseOut (event) {
 }
 
 // 3. Create a 16x16 grid of square divs
-function createPaper (box, sideSize, gap) {
+function createPaper (box, sideSize) {
     const gridSize = sideSize;
     const totalSquare = gridSize * gridSize;
 
@@ -34,20 +34,20 @@ function createPaper (box, sideSize, gap) {
     after that we have the remaining area
     it would divide by the number of the square (16)
     */
-    const squareWidth = `calc((100% / (${gridSize} + 1))`;
+    const squareWidth = 640 / gridSize;
 
     for (let i = 0; i < totalSquare; i++) {
         const square = document.createElement('div');
-        square.style.width = squareWidth;
-        square.style.height = squareWidth;
-        square.style.border = '1px solid black';
+        square.style.width = `${squareWidth}px`;
+        square.style.height = `${squareWidth}px`;
+        square.style.backgroundColor = '#ecf6fb';
         square.classList.add('square-grid');
         square.addEventListener('mouseenter', handleMouseOver);
         box.appendChild(square);
     }
 }
 
-window.onload = createPaper(container, 20, 1);
+window.onload = createPaper(container, 20);
 
 // 4. Create a new paper after click the button
 clearButton.addEventListener('click', () => {
@@ -57,7 +57,8 @@ clearButton.addEventListener('click', () => {
         createPaper(container, side, 1);
     }
     else {
-        console.log("Your side selection is too much, it should not be more than 100.")
+        alert("Your side selection is too much, it should not be more than 100.");
+        
     }
 })
 
